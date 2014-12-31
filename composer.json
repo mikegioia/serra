@@ -6,7 +6,8 @@
         "silex/silex": "~1.2",
         "tedivm/fetch": "0.5.*",
         "symfony/console": "~2.3",
-        "doctrine/dbal": "~2.5"
+        "doctrine/dbal": "~2.5",
+        "react/react": "0.4.*"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.4"

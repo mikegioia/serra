@@ -10,7 +10,7 @@ class QueryBuilder
     private $db;
     private $em;
 
-    public function __construct( Application $app )
+    public function __construct( Application &$app )
     {
         $this->db = $app[ 'db' ];
     }
