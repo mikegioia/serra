@@ -1,0 +1,26 @@
+#!/bin/bash
+#
+# Configures a new application.
+##
+
+## Get absolute paths
+basePath=`pwd -P`
+green='\e[0;32m'
+yellow='\e[0;33m'
+NC='\e[0m'
+
+## Create the local.php file if one doesn't exist;
+## Prompt for certain variables and write them to the
+## file.
+if ! [[ -f "$basePath/config/local.php" ]] ; then
+    echo -e "${green}Generating a new local config file...${NC}"
+    ## Ask for certain variables
+    read -p "  Enter database username: " user
+    read -p "  Enter database password: " pass
+    sed -e "s;%USERNAME%;${user};g" \
+        -e "s;%PASSWORD%;${pass};g" \
+        $basePath/bin/template > $basePath/config/local.php;
+     echo -e "${green}Writing to config/local.php. Please see file to make any config changes!${NC}";
+else
+    echo -e "${yellow}Found local config, not generating${NC}"
+fi

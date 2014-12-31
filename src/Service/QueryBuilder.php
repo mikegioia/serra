@@ -2,7 +2,8 @@
 
 namespace Service;
 
-use Silex\Application;
+use Silex\Application
+  , Entity\Base as EntityManager;
 
 class QueryBuilder
 {
@@ -12,7 +13,6 @@ class QueryBuilder
     public function __construct( Application $app )
     {
         $this->db = $app[ 'db' ];
-        $this->em = $app[ 'em' ];
     }
 
     public function create()
@@ -22,6 +22,6 @@ class QueryBuilder
 
     public function populate( $dbRows, $className, $index = FALSE )
     {
-        return $this->em->populate( $dbRows, $className, $index );
+        return EntityManager::populate( $dbRows, $className, $index );
     }
 }

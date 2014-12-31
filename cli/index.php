@@ -31,12 +31,6 @@ $app->register(
         "db.options" => $config[ 'db.options' ],
     ]);
 
-// Entity Manager
-$app[ 'em' ] = $app->share(
-    function () {
-        return new \Service\EntityManager();
-    });
-
 // Query Builder
 $app[ 'qb' ] = $app->share(
     function () use ( $app ) {

@@ -1,0 +1,9 @@
+<?php
+
+$config = require( CONFIG_PATH .'/dev.php' );
+
+// Extend any configuration
+$config[ 'db.options' ][ 'user' ] = '%USERNAME%';
+$config[ 'db.options' ][ 'password' ] = '%PASSWORD%';
+
+return $config;
