@@ -1,0 +1,52 @@
+#!/bin/bash
+#
+# Update the database by running the sql scripts.
+##
+
+basePath=`pwd -P`
+purple='\e[0;35m'
+green='\e[0;32m'
+yellow='\e[0;33m'
+NC='\e[0m'
+sqlargs=$@
+usage="${green}Runs all SQL statements for the application. Any options that mysql
+accepts can be used in this script.${NC}
+${yellow}Usage:${NC}
+    $(basename "$0") [-h] [mysql arguments]
+${yellow}Options:${NC}
+    -h show this help text
+${yellow}Examples:${NC}
+    $(basename "$0") -u root -ppassword -h localhost
+    $(basename "$0") -u root -p -h localhost
+    $(basename "$0") -u root -h localhost
+    $(basename "$0") -u root -ppassword -h 123.45.67.89
+${yellow}Notes:${NC}
+    The database 'phalcon' is used in all SQL scripts. Please update this
+    in the ./sql/*.sql files if you wish to use a different database name."
+
+while getopts ':h' option; do
+    case "$option" in
+        h) echo -e "$usage"
+        exit 0
+        ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+## Check if any args came in
+if ! [[ "$sqlargs" ]] ; then
+    echo -e "${yellow}This script takes mysql arguments (i.e. -u USER -p,...) to run scripts!${NC}"
+    exit 1
+fi
+
+## Run sql scripts
+echo -e "${green}Running database scripts${NC}"
+FILES="${basePath}/database/*.sql"
+for f in $FILES
+do
+    echo -e "  ${purple}...running ${f}${NC}"
+    mysql ${sqlargs} < $f
+done
+
+echo ''
+echo -e "${green}Done!${NC}"

@@ -3,7 +3,6 @@
 # Configures a new application.
 ##
 
-## Get absolute paths
 basePath=`pwd -P`
 green='\e[0;32m'
 yellow='\e[0;33m'
@@ -19,7 +18,7 @@ if ! [[ -f "$basePath/config/local.php" ]] ; then
     read -p "  Enter database password: " pass
     sed -e "s;%USERNAME%;${user};g" \
         -e "s;%PASSWORD%;${pass};g" \
-        $basePath/bin/template > $basePath/config/local.php;
+        $basePath/config/template > $basePath/config/local.php;
      echo -e "${green}Writing to config/local.php. Please see file to make any config changes!${NC}";
 else
     echo -e "${yellow}Found local config, not generating${NC}"
