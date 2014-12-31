@@ -2,17 +2,9 @@
 
 namespace Entity;
 
-class Message
+class Message extends \Entity\Base
 {
     public $id;
     public $name;
     public $title;
-
-    public function __construct( $row )
-    {
-        foreach ( $row as $key => $val )
-        {
-            $this->$key = $val;
-        }
-    }
 }

@@ -45,6 +45,15 @@ $app[ 'qb' ] = $app->share(
 
 // Parse command line arguments and execute the action(s)
 
+$queryBuilder = $app[ 'qb' ]->create();
+$results = $queryBuilder
+    ->select( '*' )
+    ->from( 'test' )
+    ->execute()
+    ->fetchAll();
+$rows = $app[ 'qb' ]->populate( $results, 'Message' );
+print_r($rows);
+
 /*
 Example to select rows and populate them
 ---
