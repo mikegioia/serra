@@ -1,0 +1,5 @@
+<?php
+
+/**
+ * Web Application Interface
+ */
