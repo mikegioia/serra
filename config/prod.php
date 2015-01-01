@@ -13,5 +13,8 @@ return [
             "dbname" => "serra",
             "user" => "",
             "password" => "",
-            "charset" => "utf8"
+            "charset" => "utf8" ],
+    "redis.options" => [
+        "host" => "localhost",
+        "port" => 6379
     ]];

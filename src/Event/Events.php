@@ -4,6 +4,11 @@ namespace Event;
 
 final class Events
 {
-    const MAIL_LISTMAILBOXES = "'mail.listmailboxes";
-    const TEST_PING = "test.ping";
+    // types of events
+    const JOB = "job";
+    const MAIL = "mail";
+
+    // event methods
+    const JOB_QUEUE = "job.queue";
+    const MAIL_LISTMAILBOXES = "mail.listmailboxes";
 }

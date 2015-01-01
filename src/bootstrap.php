@@ -8,6 +8,7 @@
  */
 
 use \Service\QueryBuilder
+  , \Service\MessageQueue
   , \Silex\Application
   , \Silex\Provider\DoctrineServiceProvider
   , \Symfony\Component\EventDispatcher\EventDispatcher;
@@ -30,7 +31,7 @@ $loader->add( 'Service\\', SRC_PATH );
 $app = new Application();
 $config = require( CONFIG_PATH .'/local.php' );
 
-// Database service
+// Database and other services
 $app->register(
     new DoctrineServiceProvider, [
         "db.options" => $config[ 'db.options' ],
@@ -40,10 +41,4 @@ $app->register(
 $app[ 'qb' ] = $app->share(
     function () use ( $app ) {
         return new QueryBuilder( $app );
-    });
-
-// Event dispatcher
-$app[ 'dispatcher' ] = $app->share(
-    function () use ( $app ) {
-        return new EventDispatcher();
     });
