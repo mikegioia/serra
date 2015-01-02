@@ -6,7 +6,7 @@
  * This executes commands from the command line or a cron. The
  * main task here is to sync mail to MySQL.
  */
-
+$start_time = microtime( true );
 require( __DIR__ .'/bootstrap.php' );
 
 // Boot up service providers
@@ -24,7 +24,6 @@ $results = $queryBuilder
     ->execute()
     ->fetchAll();
 $rows = $app[ 'qb' ]->populate( $results, 'Message' );
-// or \Service\EntityManager::populate( $results, 'Message' );
 print_r($rows);
 
 
@@ -40,3 +39,5 @@ $builder
     ->setParameter( 1, "President" )
     ->execute();
 */
+$end_time = microtime( true );
+echo $end_time - $start_time, PHP_EOL;
